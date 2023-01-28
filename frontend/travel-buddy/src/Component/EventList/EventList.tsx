@@ -3,31 +3,28 @@ import React, { useState, useEffect } from "react";
 import { setConstantValue } from "typescript";
 import { eventsAPI } from "../../API/eventsAPI";
 import { eventModel } from "../../Models/eventModel";
-
-type EventModelType = {
-  eventData: eventModel;
-  checkValue: boolean;
-};
+import EventDetails from "../EventDetails/EventDetails";
 
 function EventList() {
-  const [eventCheckList, setEventCheckList] =
-    useState<Array<{ eventData: eventModel; checkValue: boolean }>>();
+  const [eventCheckList, setEventCheckList] = useState<Array<eventModel>>([]);
+
   useEffect(() => {
-    console.log(eventsAPI);
     //when page loads we do this function
-    eventsAPI.getEventList().then((response) => {
-      setEventCheckList(response.data);
-      console.log(response);
-    })
-    .catch((e) => console.log(e));
+    eventsAPI
+      .getEventList()
+      .then((response) => {
+        setEventCheckList(response.data);
+        console.log(response);
+      })
+      .catch((e) => console.log(e));
   }, []);
   function handleCheckbox(e: any) {
     //function that handles checkbox inputs
     if (eventCheckList !== undefined)
       setEventCheckList(
         eventCheckList.map((x) => {
-          if (x.eventData.name === e.target.id) {
-            x.checkValue = e.target.checked; //reasssings value to check if its true
+          if (x.name === e.target.id) {
+            x.checkedValue = e.target.checked; //reasssings value to check if its true
           }
           return x;
         })
@@ -38,18 +35,19 @@ function EventList() {
     <div className="eventList">
       Event List
       <ul>
-        {eventCheckList?.map((x) => (
+        {eventCheckList.map((x) => (
           <li>
             {" "}
             <input
-              id={x.eventData.name}
+              id={x.name}
+              key={x.name}
               type="checkbox"
-              checked={x.checkValue}
+              checked={x.checkedValue}
               onClick={(e) => {
                 handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
               }}
             />
-            <span>{x.eventData.name}</span>
+            <span>{x.name}</span>
           </li>
         ))}
       </ul>

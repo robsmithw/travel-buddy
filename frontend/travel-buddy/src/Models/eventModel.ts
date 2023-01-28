@@ -1,6 +1,7 @@
 export interface eventModel{
-    name: string;
+    category: string;
     date: string; 
     time: string;
-    category: string;
+    name: string;
+    checkedValue?: boolean
 }

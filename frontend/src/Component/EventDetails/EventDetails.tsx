@@ -6,28 +6,28 @@ function EventDetails(props: { EventDetails: eventModel }) {
     //<div className="col border border-primary p-2 mt-2 rounded-5 border-2">
     <div className="border border-primary p-2 mt-2 rounded-5 border-2">
       <div className="eventDetails">
-        <h1> Event Details</h1>
+        <h1 className= "text-center"> Event Details</h1>
 
         <div className="row">
           <div className="col">
-            <p>Name:</p>
+            <b>Name:</b>
             <p> {props.EventDetails.title}</p>
-            <p>Description:</p>
+            <b>Description:</b>
             <p> {props.EventDetails.description}</p>
-            <p>Public:</p>
+            <b>Public:</b>
             <p> {props.EventDetails.private}</p>
           </div>
           <div className="col">
             <div className="row">
-            <p>Event Start:</p>
+            <b>Event Start:</b>
               <p> {props.EventDetails.start}</p>
             </div>
             <div className="row">
-            <p>Event End:</p>
+            <b>Event End:</b>
               <p> {props.EventDetails.end}</p>
-              <p>Category:</p>
+              <b>Category:</b>
           <p> {props.EventDetails.category}</p> 
-          <p>Timezone:</p>
+          <b>Timezone:</b>
           <p> {props.EventDetails.timezone}</p>
             </div>
           </div>

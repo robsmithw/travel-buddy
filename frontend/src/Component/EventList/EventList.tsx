@@ -60,7 +60,7 @@ function EventList(props: EventListProps) {
       <div className="row">
         <div className="col border border-primary p-2 mt-2 rounded-5 border-2">
           <div className="eventList">
-            <h1>Event List</h1>
+            <h1 className="text-center">Event List</h1>
             {eventCheckList.map((x) => (
               <div className="form-check">
                 <input

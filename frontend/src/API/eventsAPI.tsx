@@ -12,7 +12,7 @@ export const eventsAPI = {
     startDate: string,
     endDate: string,
     location: string,
-    milesToSearch?: number
+    milesToSearch?: string
   ) {
     return axiosInstance.request({
       method: "get",
@@ -21,6 +21,7 @@ export const eventsAPI = {
         startdate: startDate,
         enddate: endDate,
         location: location,
+        miles_range: milesToSearch,
       },
     });
   },

@@ -7,13 +7,14 @@ function FindEvents() {
   const [location, setLocation] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
+  const [milesRadius, setMilesRadius] = useState("1");
   const [eventModels, setEventModels] = useState<Array<eventModel>>([]);
 
   useEffect(() => {}, [eventModels]);
 
   const handleFindEvents = () => {
     eventsAPI
-      .getFilteredEvents(startDate, endDate, location)
+      .getFilteredEvents(startDate, endDate, location, milesRadius)
       .then((response) => {
         setEventModels(response.data["results"]);
         console.log(response.data["results"]);
@@ -37,8 +38,10 @@ function FindEvents() {
           <input
             className="form-control"
             type="number"
+            value={milesRadius}
             min="1"
             max="50"
+            onChange={(e) => setMilesRadius(e.target.value)}
           ></input>
         </div>
 

@@ -14,12 +14,18 @@ function EventList(props: EventListProps) {
   const [eventDetails, setEventDetails] = useState<eventModel>(
     INIT_EVENT_MODEL_DATA
   );
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     //when page loads we do this function
+    if (props.eventCheckList !== undefined) {
+      setEventCheckList(eventCheckList);
+      setIsLoaded(true);
+    }
     console.log(props.eventCheckList);
     setEventCheckList(props.eventCheckList);
-  }, []);
+  }, [props.eventCheckList]);
+
   function handleCheckbox(e: any) {
     //function that handles checkbox inputs
     if (eventCheckList !== undefined)

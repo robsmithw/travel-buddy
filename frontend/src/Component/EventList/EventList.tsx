@@ -58,7 +58,7 @@ function EventList(props: EventListProps) {
   return (
     <Fragment>
       <div className="row">
-        <div className="col border border-success p-2 mt-2 ">
+        <div className="col border border-primary p-2 mt-2 rounded-5 border-2">
           <div className="eventList">
             <h1>Event List</h1>
             {eventCheckList.map((x) => (

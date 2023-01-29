@@ -15,12 +15,12 @@ export interface eventModel {
 
 export const INIT_EVENT_MODEL_DATA: eventModel = {
   id: "",
-  title: "",
-  description: "",
-  category: "",
+  title: "...",
+  description: "...",
+  category: "...",
   entities: INIT_ENTITY,
-  start: "",
-  end: "",
-  timezone: "",
+  start: "...",
+  end: "...",
+  timezone: "...",
   private: false,
 };

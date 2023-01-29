@@ -4,6 +4,7 @@ from models.event import event
 from models.location import location
 from models.user import user
 
+
 def readSqliteTable():
     try:
         sqliteConnection = sqlite3.connect('backend/travel.sqlite3')
@@ -88,21 +89,22 @@ def readSqliteTable():
             model.first_name = row[1]
             model.last_name = row[2]
             model.username = row[3]
-            model.password = row[4]            
+            model.password = row[4]
 
             print("user_id: ", model.user_id)
             print("first_name: ", model.first_name)
             print("last_name: ", model.last_name)
             print("username: ", model.username)
-            print("password: ", model.password)            
+            print("password: ", model.password)
             print("\n")
 
-        cursor.close()                        
+        cursor.close()
 
     except sqlite3.Error as error:
         print("Failed to read data from sqlite table", error)
     finally:
         if sqliteConnection:
             sqliteConnection.close()
+
 
 readSqliteTable()

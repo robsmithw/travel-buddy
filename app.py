@@ -25,15 +25,19 @@ def filter_events():
     args = request.args
     startdate = args.get("startdate")
     enddate = args.get("enddate")
+    miles_range = args.get("miles_range")
     location = args.get("location")
-    url = "https://api.predicthq.com/v1/events/?active.gte={startdate}&active.lte={enddate}".format(startdate=startdate,enddate=enddate)
+    cordinnates = "https://api.predicthq.com/v1/places/?q={location}&limit=1".format(location=location)
     payload={}
     headers = {
       'Authorization': 'Bearer Cmoq-4-YDy5BBAP815_xJE4wBDE2VaeyhxsF8Aej'
     }
-    response = requests.request("GET", url, headers=headers, data=payload)
+    response = requests.request("GET", cordinnates, headers=headers, data=payload)
+    location = response.json()['results'][0]['location']
+    url = "https://api.predicthq.com/v1/events/?active.gte={startdate}&active.lte={enddate}&within={miles_range}mi@{lat},{lon}".format(startdate=startdate,enddate=enddate,miles_range = miles_range,lat = location[1],lon = location[0])
+    eventsResponse = requests.request("GET", url, headers=headers, data=payload)
 
-    return response.json()
+    return eventsResponse.json()
 
 @app.route("/save_events",methods = ['POST'])
 def save_events():

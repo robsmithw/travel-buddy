@@ -3,7 +3,8 @@ import { eventModel } from "../../Models/eventModel";
 
 function EventDetails(props: { EventDetails: eventModel }) {
   return (
-    <div className="border border-succes p-2 mt-2">
+    //<div className="col border border-primary p-2 mt-2 rounded-5 border-2">
+    <div className="border border-primary p-2 mt-2 rounded-5 border-2">
       <div className="eventDetails">
         <h1> Event Details</h1>
 

@@ -4,9 +4,9 @@ import { eventModel } from "../../Models/eventModel";
 function EventDetails(props: { EventDetails: eventModel }) {
   return (
     //<div className="col border border-primary p-2 mt-2 rounded-5 border-2">
-    <div className="border border-primary p-2 mt-2 rounded-5 border-2">
+    <div className="border border-primary p-2 mt-4 rounded-5 border-2 ">
       <div className="eventDetails">
-        <h1 className= "text-center"> Event Details</h1>
+        <h2 className= "text-center"> Event Details</h2>
 
         <div className="row">
           <div className="col">

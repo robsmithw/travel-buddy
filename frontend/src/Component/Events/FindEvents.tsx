@@ -21,15 +21,17 @@ function FindEvents() {
       })
       .catch((e) => console.log(e));
   };
-
+// <div className="border border-primary p-2 mt-2 rounded-5 border-2">
   return (
     <>
+    
       <div className="row">
         <div className="col-2">
-          <label className="me-1">Enter City</label>
+          <label className="me-1 ">Enter City</label>
           <input
             className="form-control"
             type="text"
+            placeholder="Nashville"
             onChange={(e) => setLocation(e.target.value)}
           ></input>
         </div>

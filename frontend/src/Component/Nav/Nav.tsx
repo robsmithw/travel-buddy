@@ -10,7 +10,7 @@ const Nav: React.FC<{}> = () => {
 
         </nav>
       
-
+        
     </>
 
     // <div>Nav</div>

@@ -2,6 +2,7 @@ import React from "react";
 
 function FindEvents() {
   return (
+    //<div className="col border border-primary p-2 mt-2 rounded-5 border-2">
     <div className="row">
       <div className="col-2">
         <label className= "me-1">Enter City</label>

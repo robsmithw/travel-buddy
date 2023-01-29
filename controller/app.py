@@ -2,6 +2,7 @@ from flask import Flask, request
 from datetime import datetime
 import sqlite3
 import requests
+import json
 app = Flask(__name__)
 
 @app.route("/")
@@ -37,15 +38,36 @@ def filter_events():
 @app.route("/save_events",methods = ['POST'])
 def save_events():
     event_form = request.form['event_form']
+    user_id = event_form['user_id']
+    event_ids = event_form['event_id']
     # assume event form passes userId and many eventIds (event ids in an array)
     sqliteConnection = sqlite3.connect('backend/travel.sqlite3')
     cursor = sqliteConnection.cursor()
-    sqlite_insert_query = """INSERT INTO Attendance (customer_id, event_id) VALUES ({user_id}, {event_id})"""
-    cursor.execute(sqlite_insert_query)
+    for event_id in event_ids:
+        sqlite_insert_query = """INSERT INTO Attendance (customer_id, event_id) VALUES ({user_id}, {event_id})""".format(user_id=user_id,event_id=event_id)
+        cursor.execute(sqlite_insert_query)
     cursor.close()
     sqliteConnection.close()
     return
-    
+
+@app.route("/get_itinerary",methods = ['POST'])
+def get_itinerary():
+    event_form = request.form['event_form']
+    user_id = event_form['user_id']
+    events = []
+    sqliteConnection = sqlite3.connect('backend/travel.sqlite3')
+    cursor = sqliteConnection.cursor()
+    sqlite_select_query = """SELECT * FROM Attendace WHERE customer_id = {user_id}""".format(user_id=user_id)
+    event_ids = cursor.execute(sqlite_select_query)
+    for event_id in event_ids:
+        sqlite_select_query = """SELECT * FROM Event WHERE event_id = {event_id}""".format(event_id = event_id)
+        event = cursor.execute(sqlite_select_query)
+        events.append(event)
+    cursor.close()
+    sqliteConnection.close()
+    return json.dumps(events)
+
+
 @app.route('/events/<id>')
 def get_event(id):
 

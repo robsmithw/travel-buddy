@@ -26,7 +26,7 @@ function EventList() {
     if (eventCheckList !== undefined)
       setEventCheckList(
         eventCheckList.map((x) => {
-          if (x.name === e.target.id) {
+          if (x.title === e.target.id) {
             x.checkedValue = e.target.checked; //reasssings value to check if its true
           } else {
             x.checkedValue = false;
@@ -59,15 +59,15 @@ function EventList() {
             <li>
               {" "}
               <input
-                id={x.name}
-                key={x.name}
+                id={x.title}
+                key={x.title}
                 type="radio"
                 checked={x.checkedValue}
                 onClick={(e) => {
                   handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
                 }}
               />
-              <span>{x.name}</span>
+              <span>{x.title}</span>
             </li>
           ))}
         </ul>

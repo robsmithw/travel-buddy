@@ -5,3 +5,10 @@ export interface eventModel{
     name: string;
     checkedValue?: boolean
 }
+
+export const INIT_EVENT_MODEL_DATA: eventModel = {
+    category: "",
+    date: "",
+    time: "",
+    name: ""
+}

@@ -14,7 +14,7 @@ function App() {
       <Nav/>
       <FindEvents />
       <EventList />
-      <EventDetails />
+     
     </>
   );
 }

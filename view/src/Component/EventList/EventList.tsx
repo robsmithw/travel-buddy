@@ -52,27 +52,32 @@ function EventList() {
 
   return (
     <Fragment>
-      <div className="eventList">
-        Event List
-        <ul>
-          {eventCheckList.map((x) => (
-            <li>
-              {" "}
-              <input
-                id={x.name}
-                key={x.name}
-                type="radio"
-                checked={x.checkedValue}
-                onClick={(e) => {
-                  handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
-                }}
-              />
-              <span>{x.name}</span>
-            </li>
-          ))}
-        </ul>
+      <div className="row">
+        <div className="col border border-success p-2 mt-2 ">
+          <div className="eventList">
+            <h1>Event List</h1>
+              {eventCheckList.map((x) => (
+                <div className="form-check">
+                  <input
+                    className="form-check-input"
+                    id={x.name}
+                    key={x.name}
+                    type="radio"
+                    checked={x.checkedValue}
+                    onClick={(e) => {
+                      handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
+                    }}
+                  />
+                  <label className="form-check-label">{x.name}</label>
+                </div>
+              ))}
+          </div>
+        </div>
+
+        <div className="col">
+          <EventDetails EventDetails={eventDetails} />
+        </div>
       </div>
-      <EventDetails EventDetails={eventDetails} />
     </Fragment>
   );
 }

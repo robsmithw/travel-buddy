@@ -1,6 +1,7 @@
 from flask import Flask, request
 from datetime import datetime
 import requests
+import sqlite3
 app = Flask(__name__)
 
 @app.route("/")
@@ -60,3 +61,20 @@ def get_location(q):
     response = requests.request("GET", url, headers=headers, data=payload)
   
     return response.text
+
+
+@app.route("/user", methods =['POST'])
+def add_user():
+  event_form = request.form['user_form']
+  first_name = event_form['first_name']
+  last_name = event_form['last_name']
+  username = event_form['username']
+  password = event_form['password']
+  sqliteConnection = sqlite3.connect('backend/travel.sqlite3')
+  cursor = sqliteConnection.cursor()
+  sqlite_insert_query = """INSERT INTO user (first_name, last_name, username, password) VALUES ({first_name}, {last_name}, {username}, {password}""".format(first_name = first_name, 
+  last_name = last_name, username = username, password = password)
+  user = cursor.execute(sqlite_insert_query)
+  cursor.close()
+  sqliteConnection.close()
+  return json.dumps(user)

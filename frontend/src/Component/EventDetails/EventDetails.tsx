@@ -3,26 +3,37 @@ import { eventModel } from "../../Models/eventModel";
 
 function EventDetails(props: { EventDetails: eventModel }) {
   return (
-    <div className="border border-succes p-2 mt-2">
+    //<div className="col border border-primary p-2 mt-2 rounded-5 border-2">
+    <div className="border border-primary p-2 mt-2 rounded-5 border-2">
       <div className="eventDetails">
-        <h1> Event Details</h1>
+        <h1 className= "text-center"> Event Details</h1>
 
-       
         <div className="row">
           <div className="col">
-            <p> {props.EventDetails.name}</p>
+            <b>Name:</b>
+            <p> {props.EventDetails.title}</p>
+            <b>Description:</b>
+            <p> {props.EventDetails.description}</p>
+            <b>Public:</b>
+            <p> {props.EventDetails.private}</p>
           </div>
           <div className="col">
             <div className="row">
-              <p> {props.EventDetails.date}</p>
+            <b>Event Start:</b>
+              <p> {props.EventDetails.start}</p>
             </div>
             <div className="row">
-              <p> {props.EventDetails.time}</p>
+            <b>Event End:</b>
+              <p> {props.EventDetails.end}</p>
+              <b>Category:</b>
+          <p> {props.EventDetails.category}</p> 
+          <b>Timezone:</b>
+          <p> {props.EventDetails.timezone}</p>
             </div>
           </div>
         </div>
         <div className="row">
-          <p> {props.EventDetails.category}</p>
+
         </div>
       </div>
     </div>

@@ -5,28 +5,33 @@ import { eventsAPI } from "../../API/eventsAPI";
 import { eventModel, INIT_EVENT_MODEL_DATA } from "../../Models/eventModel";
 import EventDetails from "../EventDetails/EventDetails";
 
-function EventList() {
+type EventListProps = {
+  eventCheckList: Array<eventModel>;
+};
+
+function EventList(props: EventListProps) {
   const [eventCheckList, setEventCheckList] = useState<Array<eventModel>>([]);
   const [eventDetails, setEventDetails] = useState<eventModel>(
     INIT_EVENT_MODEL_DATA
   );
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     //when page loads we do this function
-    eventsAPI
-      .getEventList()
-      .then((response) => {
-        setEventCheckList(response.data);
-        console.log(response);
-      })
-      .catch((e) => console.log(e));
-  }, []);
+    if (props.eventCheckList !== undefined) {
+      setEventCheckList(eventCheckList);
+      setIsLoaded(true);
+    }
+    console.log(props.eventCheckList);
+    setEventCheckList(props.eventCheckList);
+  }, [props.eventCheckList]);
+
   function handleCheckbox(e: any) {
     //function that handles checkbox inputs
     if (eventCheckList !== undefined)
       setEventCheckList(
         eventCheckList.map((x) => {
-          if (x.name === e.target.id) {
+          if (x.title === e.target.id) {
             x.checkedValue = e.target.checked; //reasssings value to check if its true
           } else {
             x.checkedValue = false;
@@ -53,24 +58,24 @@ function EventList() {
   return (
     <Fragment>
       <div className="row">
-        <div className="col border border-success p-2 mt-2 ">
+        <div className="col border border-primary p-2 mt-2 rounded-5 border-2">
           <div className="eventList">
-            <h1>Event List</h1>
-              {eventCheckList.map((x) => (
-                <div className="form-check">
-                  <input
-                    className="form-check-input"
-                    id={x.name}
-                    key={x.name}
-                    type="radio"
-                    checked={x.checkedValue}
-                    onClick={(e) => {
-                      handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
-                    }}
-                  />
-                  <label className="form-check-label">{x.name}</label>
-                </div>
-              ))}
+            <h1 className="text-center">Event List</h1>
+            {eventCheckList.map((x) => (
+              <div className="form-check">
+                <input
+                  className="form-check-input"
+                  id={x.title}
+                  key={x.title}
+                  type="radio"
+                  checked={x.checkedValue}
+                  onClick={(e) => {
+                    handleCheckbox(e); //calling the functiion when clicked passes "e(event)"
+                  }}
+                />
+                <label className="form-check-label">{x.title}</label>
+              </div>
+            ))}
           </div>
         </div>
 

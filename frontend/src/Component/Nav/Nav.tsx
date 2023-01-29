@@ -1,23 +1,20 @@
-import React from 'react'
-import './nav.css';
+import React from "react";
+import "./nav.css";
 const Nav: React.FC<{}> = () => {
   return (
     <>
-    
-       <div className='Nav'>
-        <button className= 'btn'>Find Events </button>
-       </div>
-       <div className='userInput'>
-        Enter Location
-        <br/>
-        <input type="text"></input> 
-       </div>
+      
+        <nav className="navbar bg-primary mb-5">
+       
+        <span className="bi bi-geo text-white ms-3 fs-3">Travel Buddy</span>
+
+        </nav>
+      
+
     </>
-    
+
     // <div>Nav</div>
-  
-  
   );
-}
+};
 
 export default Nav;

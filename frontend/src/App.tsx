@@ -12,8 +12,10 @@ function App() {
   return (
     <>
       <Nav/>
-      <FindEvents />
-      <EventList />
+      <div className='container'>
+        <FindEvents />
+        <EventList />
+      </div>
      
     </>
   );
